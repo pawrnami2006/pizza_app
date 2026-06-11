@@ -1,4 +1,5 @@
 const Order = require("../models/Order");
+const Inventory = require("../models/Inventory");
 
 const createOrder = async (req, res) => {
   try {
@@ -8,6 +9,22 @@ const createOrder = async (req, res) => {
       totalPrice,
       razorpayOrderId,
     } = req.body;
+
+    // Reduce inventory
+    await Inventory.findOneAndUpdate(
+      { itemName: "Mozzarella" },
+      { $inc: { stock: -100 * quantity } }
+    );
+
+    await Inventory.findOneAndUpdate(
+      { itemName: "Tomato Sauce" },
+      { $inc: { stock: -50 * quantity } }
+    );
+
+    await Inventory.findOneAndUpdate(
+      { itemName: "Thin Crust" },
+      { $inc: { stock: -1 * quantity } }
+    );
 
     const order = await Order.create({
       user: req.user.id,
