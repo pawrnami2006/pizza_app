@@ -1,5 +1,7 @@
+const User = require("../models/User");
 const Order = require("../models/Order");
 const Inventory = require("../models/Inventory");
+const { sendOrderEmail } = require("../services/emailService");
 
 const createOrder = async (req, res) => {
   try {
@@ -33,7 +35,9 @@ const createOrder = async (req, res) => {
       totalPrice,
       razorpayOrderId,
     });
+    const user = await User.findById(req.user.id);
 
+    await sendOrderEmail(user.email, order);
     res.status(201).json({
       success: true,
       order,
