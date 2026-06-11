@@ -7,6 +7,7 @@ const { protect } = require("./middleware/authMiddleware");
 const pizzaRoutes = require("./routes/pizzaRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const inventoryRoutes = require("./routes/inventoryRoutes");
 const app = express();
 
 app.use(cors());
@@ -15,6 +16,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/pizzas", pizzaRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/inventory", inventoryRoutes);
 app.get("/api/protected", protect, (req, res) => {
   res.json({
     message: "Protected Route Accessed",
