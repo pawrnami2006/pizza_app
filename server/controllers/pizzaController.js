@@ -12,7 +12,8 @@ const createPizza = async (req, res) => {
     console.log(error);
 
     res.status(500).json({
-      message: "Server Error",
+      success: false,
+      message: error.message,
     });
   }
 };
@@ -26,7 +27,8 @@ const getPizzas = async (req, res) => {
     console.log(error);
 
     res.status(500).json({
-      message: "Server Error",
+      success: false,
+      message: error.message,
     });
   }
 };
