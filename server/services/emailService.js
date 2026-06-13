@@ -45,8 +45,49 @@ const sendOrderEmail = async (to, order) => {
     console.log("Order Email Error:", error);
   }
 };
+const sendLowStockEmail = async (
+  itemName,
+  stock
+) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: "⚠️ Low Stock Alert",
+      html: `
+        <h2>Inventory Alert</h2>
+
+        <p>
+          <strong>${itemName}</strong>
+          is running low.
+        </p>
+
+        <p>
+          Current Stock:
+          <strong>${stock}</strong>
+        </p>
+      `,
+    });
+
+    console.log("Low stock email sent");
+  } catch (error) {
+    console.log(
+      "Low Stock Email Error:",
+      error
+    );
+  }
+};
 
 module.exports = {
   sendEmail,
   sendOrderEmail,
+  sendLowStockEmail,
 };

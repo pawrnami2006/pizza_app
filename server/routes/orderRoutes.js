@@ -8,10 +8,11 @@ const {
 } = require("../controllers/orderController");
 
 const { protect } = require("../middleware/authMiddleware");
+const { adminOnly } = require("../middleware/adminMiddleware");
 
 router.post("/", protect, createOrder);
 router.get("/my-orders", protect, getMyOrders);
 
-router.put("/:id/status", updateOrderStatus);
+router.put("/:id/status", protect, adminOnly, updateOrderStatus);
 
 module.exports = router;

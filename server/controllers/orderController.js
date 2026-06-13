@@ -1,7 +1,10 @@
 const User = require("../models/User");
 const Order = require("../models/Order");
 const Inventory = require("../models/Inventory");
-const { sendOrderEmail } = require("../services/emailService");
+const {
+  sendOrderEmail,
+  sendLowStockEmail,
+ } = require("../services/emailService");
 
 const createOrder = async (req, res) => {
   try {
@@ -27,6 +30,38 @@ const createOrder = async (req, res) => {
       { itemName: "Thin Crust" },
       { $inc: { stock: -1 * quantity } }
     );
+    const mozzarella = await Inventory.findOne({
+       itemName: "Mozzarella",
+    });
+
+    const sauce = await Inventory.findOne({
+       itemName: "Tomato Sauce",
+  });
+
+    const crust = await Inventory.findOne({
+       itemName: "Thin Crust",
+  });
+
+if (mozzarella.stock < 20) {
+  await sendLowStockEmail(
+    mozzarella.itemName,
+    mozzarella.stock
+  );
+}
+
+if (sauce.stock < 20) {
+  await sendLowStockEmail(
+    sauce.itemName,
+    sauce.stock
+  );
+}
+
+if (crust.stock < 20) {
+  await sendLowStockEmail(
+    crust.itemName,
+    crust.stock
+  );
+}
 
     const order = await Order.create({
       user: req.user.id,
