@@ -25,7 +25,12 @@ const createOrder = async (req, res) => {
     });
   }
 };
-
+const getKey = (req, res) => {
+  res.status(200).json({
+    key: process.env.RAZORPAY_KEY_ID,
+  });
+};
 module.exports = {
   createOrder,
+  getKey,
 };

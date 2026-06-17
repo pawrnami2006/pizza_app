@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Order = require("../models/Order");
+const Pizza = require("../models/Pizza");
 const Inventory = require("../models/Inventory");
 const {
   sendOrderEmail,
@@ -13,55 +14,45 @@ const createOrder = async (req, res) => {
       quantity,
       totalPrice,
       razorpayOrderId,
+      paymentStatus,
     } = req.body;
-
+    const pizzaDoc = await Pizza.findById(pizza);
     // Reduce inventory
     await Inventory.findOneAndUpdate(
-      { itemName: "Mozzarella" },
+      { itemName: pizzaDoc.cheese },
       { $inc: { stock: -100 * quantity } }
     );
 
+    // Reduce Sauce
     await Inventory.findOneAndUpdate(
-      { itemName: "Tomato Sauce" },
+      { itemName: pizzaDoc.sauce },
       { $inc: { stock: -50 * quantity } }
     );
 
+    // Reduce Base
     await Inventory.findOneAndUpdate(
-      { itemName: "Thin Crust" },
+      { itemName: pizzaDoc.base },
       { $inc: { stock: -1 * quantity } }
     );
-    const mozzarella = await Inventory.findOne({
-       itemName: "Mozzarella",
-    });
 
-    const sauce = await Inventory.findOne({
-       itemName: "Tomato Sauce",
-  });
+    // Reduce Veggies
+    for (const veggie of pizzaDoc.veggies) {
+      await Inventory.findOneAndUpdate(
+        { itemName: veggie },
+        { $inc: { stock: -20 * quantity } }
+      );
+    }
 
-    const crust = await Inventory.findOne({
-       itemName: "Thin Crust",
-  });
+    const inventoryItems = await Inventory.find();
 
-if (mozzarella.stock < 20) {
-  await sendLowStockEmail(
-    mozzarella.itemName,
-    mozzarella.stock
-  );
-}
-
-if (sauce.stock < 20) {
-  await sendLowStockEmail(
-    sauce.itemName,
-    sauce.stock
-  );
-}
-
-if (crust.stock < 20) {
-  await sendLowStockEmail(
-    crust.itemName,
-    crust.stock
-  );
-}
+    for (const item of inventoryItems) {
+      if (item.stock < 20) {
+        await sendLowStockEmail(
+          item.itemName,
+          item.stock
+        );
+      }
+    }
 
     const order = await Order.create({
       user: req.user.id,
@@ -69,6 +60,7 @@ if (crust.stock < 20) {
       quantity,
       totalPrice,
       razorpayOrderId,
+      paymentStatus,
     });
     const user = await User.findById(req.user.id);
 
@@ -92,6 +84,25 @@ const getMyOrders = async (req, res) => {
     const orders = await Order.find({
       user: req.user.id,
     })
+      .populate("pizza")
+      .populate("user", "name email");
+
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find()
       .populate("pizza")
       .populate("user", "name email");
 
@@ -136,5 +147,6 @@ const updateOrderStatus = async (req, res) => {
 module.exports = {
   createOrder,
   getMyOrders,
+  getAllOrders,
   updateOrderStatus,
 };

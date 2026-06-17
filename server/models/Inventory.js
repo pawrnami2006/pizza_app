@@ -8,6 +8,11 @@ const inventorySchema = new mongoose.Schema(
       unique: true,
     },
 
+    category: {
+      type: String,
+      required: true,
+    },
+
     stock: {
       type: Number,
       required: true,

@@ -38,12 +38,12 @@ const orderSchema = new mongoose.Schema(
     orderStatus: {
       type: String,
       enum: [
-        "placed",
-        "preparing",
-        "out_for_delivery",
+        "order_received",
+        "in_kitchen",
+        "sent_to_delivery",
         "delivered",
       ],
-      default: "placed",
+      default: "order_received",
     },
   },
   {
