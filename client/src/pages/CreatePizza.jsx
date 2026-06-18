@@ -18,19 +18,19 @@ function CreatePizza() {
 
   let pizzaImage = thinCrustPreview;
 
-if (base === "🍕 Hand Tossed") {
+if (base === "Hand Tossed") {
   pizzaImage = handTossedPreview;
 }
 
-if (base === "🧀 Cheese Burst") {
+if (base === "Cheese Burst") {
   pizzaImage = cheeseBurstPreview;
 }
 
-if (base === "🥖 Stuffed Crust") {
+if (base === "Stuffed Crust") {
   pizzaImage = stuffedCrustPreview;
 }
 
-if (base === "🌾 Whole Wheat") {
+if (base === "Whole Wheat") {
   pizzaImage = wholeWheatPreview;
 }
 
@@ -179,25 +179,41 @@ useEffect(() => {
         <div className="option-grid">
 
           {[
-            "🍞 Thin Crust",
-            "🍕 Hand Tossed",
-            "🧀 Cheese Burst",
-            "🥖 Stuffed Crust",
-            "🌾 Whole Wheat",
-          ].map((item) => (
+  {
+    label: "🍞 Thin Crust",
+    value: "Thin Crust",
+  },
+  {
+    label: "🍕 Hand Tossed",
+    value: "Hand Tossed",
+  },
+  {
+    label: "🧀 Cheese Burst",
+    value: "Cheese Burst",
+  },
+  {
+    label: "🥖 Stuffed Crust",
+    value: "Stuffed Crust",
+  },
+  {
+    label: "🌾 Whole Wheat",
+    value: "Whole Wheat",
+  },
+].map((item) => (
 
             <div
-              key={item}
+              key={item.value}
               className={
-                base === item
-                  ? "option-card active"
-                  : "option-card"
-              }
-              onClick={() =>
-                setBase(item)
-              }
-            >
-              {item}
+  base === item.value
+    ? "option-card active"
+    : "option-card"
+}
+
+onClick={() =>
+  setBase(item.value)
+}
+>
+  {item.label}
             </div>
 
           ))}
@@ -209,25 +225,40 @@ useEffect(() => {
         <div className="option-grid">
 
           {[
-            "🍅 Tomato",
-            "🔥 BBQ",
-            "🌶️ Peri Peri",
-            "🧄 White Garlic",
-            "🌮 Chipotle",
-          ].map((item) => (
+  {
+    label: "🍅 Tomato",
+    value: "Tomato",
+  },
+  {
+    label: "🔥 BBQ",
+    value: "BBQ",
+  },
+  {
+    label: "🌶️ Peri Peri",
+    value: "Peri Peri",
+  },
+  {
+    label: "🧄 White Garlic",
+    value: "White Garlic",
+  },
+  {
+    label: "🌮 Chipotle",
+    value: "Chipotle",
+  },
+].map((item) => (
 
             <div
-              key={item}
+              key={item.value}
               className={
-                sauce === item
+                sauce === item.value
                   ? "option-card active"
                   : "option-card"
               }
               onClick={() =>
-                setSauce(item)
+                setSauce(item.value)
               }
             >
-              {item}
+              {item.label}
             </div>
 
           ))}
@@ -239,23 +270,32 @@ useEffect(() => {
         <div className="option-grid">
 
           {[
-            "🧀 Mozzarella",
-            "🟨 Cheddar",
-            "🥛 Parmesan",
-          ].map((item) => (
+  {
+    label: "🧀 Mozzarella",
+    value: "Mozzarella",
+  },
+  {
+    label: "🟨 Cheddar",
+    value: "Cheddar",
+  },
+  {
+    label: "🥛 Parmesan",
+    value: "Parmesan",
+  },
+].map((item) => (
 
             <div
-              key={item}
+              key={item.value}
               className={
-                cheese === item
+                cheese === item.value
                   ? "option-card active"
                   : "option-card"
               }
               onClick={() =>
-                setCheese(item)
+                setCheese(item.value)
               }
             >
-              {item}
+              {item.label}
             </div>
 
           ))}
@@ -267,24 +307,36 @@ useEffect(() => {
         <div className="option-grid">
 
           {[
-            "🧅 Onion",
-            "🫑 Capsicum",
-            "🌽 Corn",
-            "🍄 Mushroom",
+            {
+              label: "🧅 Onion",
+              value: "Onion"
+            },
+            {
+              label: "🫑 Capsicum",
+              value: "Capsicum"
+            },
+            {
+              label: "🌽 Corn",
+              value: "Corn"
+            },
+            {
+              label: "🍄 Mushroom",
+              value: "Mushroom"
+            }
           ].map((item) => (
 
             <div
-              key={item}
+              key={item.value}
               className={
-                veggies.includes(item)
+                veggies.includes(item.value)
                   ? "option-card active"
                   : "option-card"
               }
               onClick={() =>
-                handleVeggieChange(item)
+                handleVeggieChange(item.value)
               }
             >
-              {item}
+              {item.label}
             </div>
 
           ))}
