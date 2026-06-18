@@ -8,6 +8,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Inventory from "./pages/Inventory";
 import OrderManagement from "./pages/OrderManagement";
 import CreatePizza from "./pages/CreatePizza";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
           element={<OrderManagement />}
         />
         <Route path="/create-pizza" element={<CreatePizza />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
       </Routes>
     </BrowserRouter>
   );
