@@ -1,8 +1,8 @@
 # 🍕 PizzaHub
 
-A full-stack pizza ordering and management system built with the MERN stack.
+A full-stack pizza ordering and restaurant management system built using the MERN Stack with Razorpay payment integration.
 
-PizzaHub allows customers to create customized pizzas, place orders, make payments through Razorpay, and track their orders. It also provides an admin panel for inventory management and order processing.
+PizzaHub allows customers to browse pizzas, build custom pizzas, place orders, make payments online, and track their order status. It also includes a complete admin dashboard for inventory and order management.
 
 ---
 
@@ -10,85 +10,102 @@ PizzaHub allows customers to create customized pizzas, place orders, make paymen
 
 ### 👤 Customer Features
 
-* User Registration & Login
-* JWT Authentication
-* Email Verification
-* Forgot Password & Reset Password
-* Browse Popular Pizzas
-* Build Custom Pizza
-* Dynamic Pizza Preview
-* Razorpay Payment Integration
-* Order Tracking
-* View Order History
+- User Registration & Login
+- JWT Authentication
+- Browse Chef's Special Pizzas
+- Build Custom Pizza
+- Dynamic Pricing
+- Real-time Pizza Preview
+- Razorpay Payment Integration
+- Order Tracking
+- View Order History
 
-### 🛠️ Admin Features
+### 👨‍💼 Admin Features
 
-* Admin Dashboard
-* Inventory Management
-* Stock Updates
-* Order Management
-* Update Order Status
-* Track Payments
+- Admin Dashboard
+- Inventory Management
+- Add New Inventory Items
+- Update Stock Levels
+- Low Stock Alerts
+- Order Management
+- Update Order Status
+- Monitor Customer Orders
 
 ---
 
-## 🏗️ Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
-
-* React.js
-* React Router DOM
-* Axios
-* CSS3
-* Vite
+- React.js
+- React Router DOM
+- Axios
+- CSS
 
 ### Backend
-
-* Node.js
-* Express.js
-* JWT Authentication
-* Nodemailer
+- Node.js
+- Express.js
 
 ### Database
+- MongoDB Atlas
+- Mongoose
 
-* MongoDB Atlas
-* Mongoose
+### Authentication
+- JWT (JSON Web Token)
 
 ### Payment Gateway
-
-* Razorpay
+- Razorpay
 
 ---
 
-## 📂 Project Structure
+## 📸 Screenshots
 
-```text
-pizza_app/
-│
-├── client/
-│   ├── src/
-│   ├── assets/
-│   ├── pages/
-│   └── components/
-│
-├── server/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   └── config/
-│
-└── README.md
-```
+### Login Page
 
-## 📸 Screens
+<img src="screenshots/login.png" width="900">
 
-* Dashboard
-* Create Pizza
-* My Orders
-* Admin Dashboard
-* Inventory Management
-* Order Management
+---
+
+### Customer Dashboard
+
+<img src="screenshots/dashboard.png" width="900">
+
+<br>
+
+<img src="screenshots/dashboard2.png" width="900">
+
+---
+
+### Build Your Pizza
+
+<img src="screenshots/pizza-builder.png" width="900">
+
+---
+
+### My Orders
+
+<img src="screenshots/orders.png" width="900">
+
+---
+
+### Admin Dashboard
+
+<img src="screenshots/admin-dashboard.png" width="900">
+
+---
+
+### Inventory Management
+
+<img src="screenshots/inventory.png" width="900">
+
+<br>
+
+<img src="screenshots/inventory2.png" width="900">
+
+---
+
+### Order Management
+
+<img src="screenshots/order-management.png" width="900">
 
 ---
 
@@ -97,54 +114,92 @@ pizza_app/
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/pawrnami2006/pizza_app.git
+```
+
+### Navigate to Project
+
+```bash
 cd pizza_app
+```
+
+### Install Backend Dependencies
+
+```bash
+cd server
+npm install
+```
+
+### Install Frontend Dependencies
+
+```bash
+cd ../client
+npm install
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file inside the server folder and add:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_jwt_secret
+
+RAZORPAY_KEY_ID=your_key_id
+
+RAZORPAY_KEY_SECRET=your_key_secret
+```
+
+---
+
+## ▶️ Run Application
+
+### Backend
+
+```bash
+cd server
+npm start
 ```
 
 ### Frontend
 
 ```bash
 cd client
-npm install
 npm run dev
 ```
 
-### Backend
+---
 
-```bash
-cd server
-npm install
-npm start
-```
+## 📂 Project Modules
+
+### Customer Side
+
+- Authentication
+- Dashboard
+- Pizza Builder
+- Payment Integration
+- Order Tracking
+
+### Admin Side
+
+- Inventory Dashboard
+- Stock Management
+- Order Management
+- Delivery Status Updates
 
 ---
 
-## 🔐 Environment Variables
+## 🎯 Future Enhancements
 
-Create a `.env` file inside the server folder.
-
-```env
-PORT=
-MONGO_URI=
-
-JWT_SECRET=
-
-EMAIL_USER=
-EMAIL_PASS=
-
-RAZORPAY_KEY_ID=
-RAZORPAY_KEY_SECRET=
-```
-
----
-
-## 🎯 Future Improvements
-
-* Real-time Order Tracking
-* Pizza Recommendation System
-* Customer Reviews & Ratings
-* Sales Analytics Dashboard
-* Coupon & Discount System
+- Sales Analytics Dashboard
+- Email Notifications
+- Coupon System
+- Inventory Auto Deduction
+- Mobile Responsive Version
+- Admin Revenue Reports
 
 ---
 
@@ -152,6 +207,11 @@ RAZORPAY_KEY_SECRET=
 
 **Pawrnami Omprakash**
 
-B.Tech Computer Science Engineering Student
+B.Tech Computer Science Engineering
 
-Built as a full-stack MERN project for learning authentication, payments, inventory management, and order processing systems.
+GitHub:
+https://github.com/pawrnami2006
+
+---
+
+⭐ If you like this project, give it a star on GitHub.
