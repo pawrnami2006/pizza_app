@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+
+.builder-page {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(214,40,40,0.15),
+      #050505 40%
+    );
+
+  color: white;
+
+  padding: 50px;
+}
+
+.builder-title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 50px;
+}
+
+.builder-container {
+  display: flex;
+  gap: 40px;
+}
+
+.builder-left {
+  flex: 2;
+}
+
+.builder-right {
+  flex: 1;
+}
+
+.builder-left h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.option-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(170px, 1fr));
+
+  gap: 15px;
+}
+
+.option-card {
+  background: #111;
+
+  border: 1px solid #222;
+
+  border-radius: 15px;
+
+  padding: 18px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #d62828;
+
+  box-shadow:
+    0 0 20px rgba(214,40,40,0.3);
+}
+
+.option-card.active {
+  background: #d62828;
+
+  border-color: #d62828;
+
+  color: white;
+}
+
+.summary-card {
+  background: #111;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  position: sticky;
+  top: 30px;
+
+  border: 1px solid #222;
+}
+
+.summary-card h2 {
+  margin-bottom: 25px;
+}
+
+.summary-card p {
+  margin-bottom: 12px;
+  color: #ddd;
+}
+
+.builder-price {
+  font-size: 3rem;
+
+  font-weight: bold;
+
+  color: #ff4d4d;
+
+  text-shadow:
+    0 0 15px rgba(255,77,77,0.5);
+
+  margin-top: 25px;
+
+  margin-bottom: 25px;
+}
+
+.payment-btn {
+  width: 100%;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #d62828;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.payment-btn:hover {
+  background: #b71c1c;
+
+  transform: translateY(-3px);
+}
+
+.builder-subtitle {
+  text-align: center;
+
+  color: #bbb;
+
+  font-size: 1.1rem;
+
+  margin-top: -25px;
+
+  margin-bottom: 50px;
+}
+
+.pizza-preview {
+  width: 100%;
+
+  border-radius: 15px;
+
+  margin-bottom: 20px;
+
+  box-shadow:
+    0 0 25px rgba(214,40,40,0.3);
+
+    transition: 0.4s ease;
+}
+
+.pizza-preview:hover {
+  transform: scale(1.03);
+}

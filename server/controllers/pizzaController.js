@@ -2,7 +2,10 @@ const Pizza = require("../models/Pizza");
 
 const createPizza = async (req, res) => {
   try {
-    const pizza = await Pizza.create(req.body);
+    const pizza = await Pizza.create({
+      ...req.body,
+      isCustom: true,
+    });
 
     res.status(201).json({
       message: "Pizza created",
@@ -20,7 +23,9 @@ const createPizza = async (req, res) => {
 
 const getPizzas = async (req, res) => {
   try {
-    const pizzas = await Pizza.find();
+    const pizzas = await Pizza.find({
+      isCustom: false,
+    });
 
     res.status(200).json(pizzas);
   } catch (error) {

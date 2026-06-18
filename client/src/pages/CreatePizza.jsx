@@ -1,6 +1,13 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./CreatePizza.css";
+import pizzaPreview from "../assets/pizza-preview.png";
+import thinCrustPreview from "../assets/thin-crust-preview.png";
+import handTossedPreview from "../assets/hand-tossed-preview.png";
+import cheeseBurstPreview from "../assets/cheese-burst-preview.png";
+import stuffedCrustPreview from "../assets/stuffed-crust-preview.png";
+import wholeWheatPreview from "../assets/whole-wheat-preview.png";
 
 function CreatePizza() {
   const navigate = useNavigate();
@@ -8,6 +15,24 @@ function CreatePizza() {
   const [sauce, setSauce] = useState("");
   const [cheese, setCheese] = useState("");
   const [price, setPrice] = useState(0);
+
+  let pizzaImage = thinCrustPreview;
+
+if (base === "🍕 Hand Tossed") {
+  pizzaImage = handTossedPreview;
+}
+
+if (base === "🧀 Cheese Burst") {
+  pizzaImage = cheeseBurstPreview;
+}
+
+if (base === "🥖 Stuffed Crust") {
+  pizzaImage = stuffedCrustPreview;
+}
+
+if (base === "🌾 Whole Wheat") {
+  pizzaImage = wholeWheatPreview;
+}
 
   const [veggies, setVeggies] = useState([]);
 
@@ -135,106 +160,187 @@ useEffect(() => {
 };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>🍕 Build Your Pizza</h1>
+  <div className="builder-page">
 
-      <h3>Choose Base</h3>
+    <h1 className="builder-title">
+      Build Your Pizza
+    </h1>
 
-      <select
-        value={base}
-        onChange={(e) => setBase(e.target.value)}
-      >
-        <option value="">Select Base</option>
-        <option>Thin Crust</option>
-        <option>Hand Tossed</option>
-        <option>Cheese Burst</option>
-        <option>Stuffed Crust</option>
-        <option>Whole Wheat</option>
-      </select>
+    <p className="builder-subtitle">
+      Customize every ingredient exactly the way you like it.
+    </p>
 
-      <h3>Choose Sauce</h3>
+    <div className="builder-container">
 
-      <select
-        value={sauce}
-        onChange={(e) => setSauce(e.target.value)}
-      >
-        <option value="">Select Sauce</option>
-        <option>Tomato</option>
-        <option>BBQ</option>
-        <option>Peri Peri</option>
-        <option>White Garlic</option>
-        <option>Chipotle</option>
-      </select>
+      <div className="builder-left">
 
-      <h3>Choose Cheese</h3>
+        <h3>Choose Base</h3>
 
-      <select
-        value={cheese}
-        onChange={(e) => setCheese(e.target.value)}
-      >
-        <option value="">Select Cheese</option>
-        <option>Mozzarella</option>
-        <option>Cheddar</option>
-        <option>Parmesan</option>
-      </select>
+        <div className="option-grid">
 
-      <h3>Choose Veggies</h3>
+          {[
+            "🍞 Thin Crust",
+            "🍕 Hand Tossed",
+            "🧀 Cheese Burst",
+            "🥖 Stuffed Crust",
+            "🌾 Whole Wheat",
+          ].map((item) => (
 
-      <label>
-        <input
-          type="checkbox"
-          onChange={() =>
-            handleVeggieChange("Onion")
-          }
-        />
-        Onion
-      </label>
+            <div
+              key={item}
+              className={
+                base === item
+                  ? "option-card active"
+                  : "option-card"
+              }
+              onClick={() =>
+                setBase(item)
+              }
+            >
+              {item}
+            </div>
 
-      <br />
+          ))}
 
-      <label>
-        <input
-          type="checkbox"
-          onChange={() =>
-            handleVeggieChange("Capsicum")
-          }
-        />
-        Capsicum
-      </label>
+        </div>
 
-      <br />
+        <h3>Choose Sauce</h3>
 
-      <label>
-        <input
-          type="checkbox"
-          onChange={() =>
-            handleVeggieChange("Corn")
-          }
-        />
-        Corn
-      </label>
+        <div className="option-grid">
 
-      <br />
+          {[
+            "🍅 Tomato",
+            "🔥 BBQ",
+            "🌶️ Peri Peri",
+            "🧄 White Garlic",
+            "🌮 Chipotle",
+          ].map((item) => (
 
-      <label>
-        <input
-          type="checkbox"
-          onChange={() =>
-            handleVeggieChange("Mushroom")
-          }
-        />
-        Mushroom
-      </label>
+            <div
+              key={item}
+              className={
+                sauce === item
+                  ? "option-card active"
+                  : "option-card"
+              }
+              onClick={() =>
+                setSauce(item)
+              }
+            >
+              {item}
+            </div>
 
-      <br />
-      <br />
-      <h2>Total Price: ₹{price}</h2>
-      <br />
-      <button onClick={handlePayment}>
-        Proceed To Payment
-      </button>
+          ))}
+
+        </div>
+
+        <h3>Choose Cheese</h3>
+
+        <div className="option-grid">
+
+          {[
+            "🧀 Mozzarella",
+            "🟨 Cheddar",
+            "🥛 Parmesan",
+          ].map((item) => (
+
+            <div
+              key={item}
+              className={
+                cheese === item
+                  ? "option-card active"
+                  : "option-card"
+              }
+              onClick={() =>
+                setCheese(item)
+              }
+            >
+              {item}
+            </div>
+
+          ))}
+
+        </div>
+
+        <h3>Choose Veggies</h3>
+
+        <div className="option-grid">
+
+          {[
+            "🧅 Onion",
+            "🫑 Capsicum",
+            "🌽 Corn",
+            "🍄 Mushroom",
+          ].map((item) => (
+
+            <div
+              key={item}
+              className={
+                veggies.includes(item)
+                  ? "option-card active"
+                  : "option-card"
+              }
+              onClick={() =>
+                handleVeggieChange(item)
+              }
+            >
+              {item}
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
+
+      <div className="builder-right">
+
+        <div className="summary-card">
+
+          <img
+            src={pizzaImage}
+            alt="Pizza Preview"
+            className="pizza-preview"
+          />
+
+          <h2>Your Pizza</h2>
+
+          <p>
+            <strong>Base:</strong> {base || "-"}
+          </p>
+
+          <p>
+            <strong>Sauce:</strong> {sauce || "-"}
+          </p>
+
+          <p>
+            <strong>Cheese:</strong> {cheese || "-"}
+          </p>
+
+          <p>
+            <strong>Veggies:</strong>{" "}
+            {veggies.join(", ") || "-"}
+          </p>
+
+          <div className="builder-price">
+            ₹{price}
+          </div>
+
+          <button
+            className="payment-btn"
+            onClick={handlePayment}
+          >
+            Proceed To Payment
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
-  );
+
+  </div>
+);
 }
 
 export default CreatePizza;

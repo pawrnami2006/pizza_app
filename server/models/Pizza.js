@@ -35,6 +35,11 @@ const pizzaSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+
+    isCustom: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

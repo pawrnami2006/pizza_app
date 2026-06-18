@@ -1,0 +1,126 @@
+.orders-admin-page {
+  min-height: 100vh;
+
+  padding: 50px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(214,40,40,0.15),
+      #050505 40%
+    );
+
+  color: white;
+}
+
+.orders-admin-title {
+  text-align: center;
+
+  font-size: 3rem;
+
+  margin-bottom: 10px;
+}
+
+.orders-admin-subtitle {
+  text-align: center;
+
+  color: #bbb;
+
+  margin-bottom: 40px;
+}
+
+.orders-admin-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 25px;
+}
+
+.admin-order-card {
+  background: #101010;
+
+  border: 1px solid #222;
+
+  border-radius: 20px;
+
+  padding: 25px;
+
+  transition: 0.3s;
+}
+
+.admin-order-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 0 25px rgba(214,40,40,0.25);
+}
+
+.order-icon {
+  font-size: 3rem;
+
+  text-align: center;
+
+  margin-bottom: 15px;
+}
+
+.admin-order-card h2 {
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+.admin-order-card p {
+  color: #ddd;
+
+  margin-bottom: 12px;
+}
+
+.payment-status {
+  text-align: center;
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  margin-top: 15px;
+}
+
+.paid {
+  background: #1b5e20;
+}
+
+.pending {
+  background: #b71c1c;
+}
+
+.order-status {
+  text-align: center;
+
+  margin-top: 15px;
+
+  background: #222;
+
+  padding: 10px;
+
+  border-radius: 10px;
+}
+
+.status-select {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background: #181818;
+
+  color: white;
+
+  border: 1px solid #333;
+}

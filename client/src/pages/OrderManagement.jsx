@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./OrderManagement.css";
 
 function OrderManagement() {
   const [orders, setOrders] = useState([]);
@@ -53,40 +54,68 @@ function OrderManagement() {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Order Management</h1>
+  <div className="orders-admin-page">
+
+    <h1 className="orders-admin-title">
+      📦 Order Management
+    </h1>
+
+    <p className="orders-admin-subtitle">
+      Track and update customer orders.
+    </p>
+
+    <div className="orders-admin-grid">
 
       {orders.map((order) => (
+
         <div
           key={order._id}
-          style={{
-            border: "1px solid gray",
-            padding: "15px",
-            marginBottom: "15px",
-          }}
+          className="admin-order-card"
         >
-          <h3>{order.pizza?.name}</h3>
+
+          <div className="order-icon">
+            🍕
+          </div>
+
+          <h2>
+            {order.pizza?.name}
+          </h2>
 
           <p>
-            Customer:
+            <strong>Customer:</strong>
+            <br />
             {order.user?.email}
           </p>
 
           <p>
-            Amount: ₹{order.totalPrice}
+            <strong>Amount:</strong>
+            <br />
+            ₹{order.totalPrice}
           </p>
 
-          <p>
-            Payment:
-            {order.paymentStatus}
-          </p>
+          <div
+            className={
+              order.paymentStatus === "paid"
+                ? "payment-status paid"
+                : "payment-status pending"
+            }
+          >
+            {order.paymentStatus
+              ?.replace(/\b\w/g, c =>
+                c.toUpperCase()
+              )}
+          </div>
 
-          <p>
-            Status:
-            {order.orderStatus}
-          </p>
+          <div className="order-status">
+            {order.orderStatus
+              ?.replaceAll("_", " ")
+              .replace(/\b\w/g, c =>
+                c.toUpperCase()
+              )}
+          </div>
 
           <select
+            className="status-select"
             value={order.orderStatus}
             onChange={(e) =>
               updateStatus(
@@ -104,17 +133,23 @@ function OrderManagement() {
             </option>
 
             <option value="sent_to_delivery">
-              Sent to Delivery
+              Sent To Delivery
             </option>
 
             <option value="delivered">
               Delivered
             </option>
           </select>
+
         </div>
+
       ))}
+
     </div>
-  );
+
+  </div>
+);
+
 }
 
 export default OrderManagement;

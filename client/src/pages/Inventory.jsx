@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./Inventory.css";
 
 function Inventory() {
   const [inventory, setInventory] = useState([]);
@@ -81,19 +82,42 @@ function Inventory() {
     fetchInventory();
   }, []);
 
+  const getCategoryIcon = (category) => {
+  switch (category?.toLowerCase()) {
+    case "cheese":
+      return "🧀";
+
+    case "sauce":
+      return "🥫";
+
+    case "vegetable":
+      return "🌽";
+
+    case "mushroom":
+      return "🍄";
+
+    case "spice":
+      return "🌶️";
+
+    default:
+      return "🍕";
+  }
+};
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Inventory Management</h1>
-        <div
-  style={{
-    border: "1px solid gray",
-    padding: "20px",
-    marginBottom: "20px",
-  }}
->
+    <div className="inventory-page">
+      <h1 className="inventory-title">
+        📦 Inventory Management
+      </h1>
+
+      <p className="inventory-subtitle">
+        Manage ingredients and stock levels.
+      </p>
+        <div className="inventory-form-card">
   <h3>Add Inventory Item</h3>
 
   <input
+    className="inventory-input"
     type="text"
     placeholder="Item Name"
     value={itemName}
@@ -106,6 +130,7 @@ function Inventory() {
   <br />
 
   <input
+    className="inventory-input"
     type="text"
     placeholder="Category"
     value={category}
@@ -118,6 +143,7 @@ function Inventory() {
   <br />
 
   <input
+    className="inventory-input"
     type="text"
     placeholder="Unit"
     value={unit}
@@ -130,6 +156,7 @@ function Inventory() {
   <br />
 
   <input
+    className="inventory-input"
     type="number"
     placeholder="Stock"
     value={stock}
@@ -141,20 +168,21 @@ function Inventory() {
   <br />
   <br />
 
-  <button onClick={addInventory}>
+  <button className="inventory-btn" onClick={addInventory}>
     Add Inventory
   </button>
 </div>
+<div className="inventory-grid">
       {inventory.map((item) => (
         <div
           key={item._id}
-          style={{
-            border: "1px solid gray",
-            padding: "15px",
-            marginBottom: "15px",
-          }}
+          className="inventory-card"
         >
-          <h3>{item.itemName}</h3>
+          <h3>
+            {getCategoryIcon(item.category)}
+            {" "}
+            {item.itemName}
+          </h3>
 
           <p>
             Category: {item.category}
@@ -162,11 +190,20 @@ function Inventory() {
           <p>
             Unit: {item.unit}
           </p>
-          <p>
-            Stock: {item.stock}
-          </p>
+          <p
+            className={
+              item.stock < 20
+                ? "low-stock"
+                : "good-stock"
+          }
+        >
+          {item.stock < 20
+            ? `🔴 Low Stock (${item.stock})`
+            : `🟢 In Stock (${item.stock})`}
+      </p>
 
           <button
+          className="stock-btn"
             onClick={() =>
               updateStock(
                 item._id,
@@ -178,6 +215,8 @@ function Inventory() {
           </button>
         </div>
       ))}
+  </div>
+
     </div>
   );
 }
