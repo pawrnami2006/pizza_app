@@ -1,9 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
+import logo from "../assets/logo.png";
+import "./ResetPassword.css";
 
 function ResetPassword() {
   const { token } = useParams();
+  const navigate = useNavigate();
 
   const [password, setPassword] =
     useState("");
@@ -22,7 +25,10 @@ function ResetPassword() {
         }
       );
 
-      setMessage(res.data.message);
+      setMessage("Password reset successful! Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
       setMessage(
         error.response?.data?.message ||
@@ -32,28 +38,62 @@ function ResetPassword() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Reset Password</h2>
+    <div className="reset-page">
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="password"
-          placeholder="New Password"
-          value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
-        />
+      <div className="reset-content">
 
-        <br />
-        <br />
+        <h1 className="reset-title">
+          NEW
+          <br />
+          PASSWORD
+        </h1>
 
-        <button type="submit">
-          Reset Password
-        </button>
-      </form>
+        <p className="reset-subtitle">
+          Secure your account.
+        </p>
 
-      <p>{message}</p>
+        <div className="reset-card">
+
+          <img
+            src={logo}
+            alt="PizzaHub"
+            className="reset-logo"
+          />
+
+          <h2>Reset Password</h2>
+
+          <p>
+            Enter your new password
+          </p>
+
+          <form onSubmit={handleSubmit}>
+
+            <input
+              type="password"
+              placeholder="New Password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+            />
+
+            <button
+              type="submit"
+              className="reset-btn"
+            >
+              Reset Password
+            </button>
+
+          </form>
+
+          <p className="reset-message">
+            {message}
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
   );
 }

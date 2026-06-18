@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+
+  background-image: url("../assets/pizza-bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+
+  padding-left: 80px;
+}
+
+.login-page::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.left-section {
+  width: 500px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  color: white;
+  font-size: 4.5rem;
+  font-weight: bold;
+  line-height: 1.1;
+
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  color: #d62828;
+  font-size: 1.8rem;
+
+  margin-bottom: 20px;
+}
+
+.hero-text {
+  color: #d0d0d0;
+  margin-bottom: 40px;
+}
+
+.login-card {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+
+  width: 430px;
+
+  background: rgba(15, 15, 15, 0.92);
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  backdrop-filter: blur(8px);
+
+  margin-top: 40px;
+
+  box-shadow: 0 0px 20px rgba(214, 40, 40, 0.2);
+}
+
+.logo {
+  width: 110px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.login-card h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.login-card p {
+  color: #bbb;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 14px;
+
+  margin-top: 15px;
+
+  background: #111;
+  color: white;
+
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.login-btn {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #d62828;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #b71c1c;
+}
+
+.links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.links a {
+  color: #ff5a5a;
+  text-decoration: none;
+}
+
+.message {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}

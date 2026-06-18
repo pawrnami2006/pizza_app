@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+import "./Login.css";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -38,8 +40,6 @@ function Login() {
         JSON.stringify(res.data.user)
       );
 
-      setMessage("Login Successful");
-
       if (res.data.user.role === "admin") {
         navigate("/admin");
       } else {
@@ -48,54 +48,92 @@ function Login() {
     } catch (error) {
       setMessage(
         error.response?.data?.message ||
-        "Login failed"
+          "Login failed"
       );
     }
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Login</h2>
+  <div className="login-page">
 
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="left-section">
+
+      <h1 className="hero-title">
+        BUILD YOUR
+        <br />
+        PERFECT PIZZA
+      </h1>
+
+      <p className="hero-subtitle">
+        One Slice At A Time.
+      </p>
+
+      <div className="login-card">
+
+        <img
+          src={logo}
+          alt="PizzaHub"
+          className="logo"
+        />
+
+        <h2>Welcome Back</h2>
+
+        <p>Sign in to PizzaHub</p>
+
+        <form onSubmit={handleSubmit}>
+
           <input
             type="email"
             name="email"
-            placeholder="Enter Email"
+            placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
           />
-        </div>
 
-        <br />
-
-        <div>
           <input
             type="password"
             name="password"
-            placeholder="Enter Password"
+            placeholder="Password"
             value={formData.password}
             onChange={handleChange}
           />
+
+          <button
+            type="submit"
+            className="login-btn"
+          >
+            Login
+          </button>
+
+        </form>
+
+        <div className="links">
+
+          <a href="/forgot-password">
+            Forgot Password?
+          </a>
+
+          <br />
+          <br />
+
+          Don't have an account?{" "}
+
+          <a href="/register">
+            Register
+          </a>
+
         </div>
 
-        <br />
+        <p className="message">
+          {message}
+        </p>
 
-        <button type="submit">
-          Login
-        </button>
-        <br />
-        <br />
+      </div>
 
-        <a href="/forgot-password">
-          Forgot Password?
-        </a>
-      </form>
-
-      <p>{message}</p>
     </div>
-  );
+
+  </div>
+);
 }
 
 export default Login;

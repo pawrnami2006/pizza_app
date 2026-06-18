@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import logo from "../assets/logo.png";
+import "./ForgotPassword.css";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -24,28 +26,62 @@ function ForgotPassword() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Forgot Password</h2>
+    <div className="forgot-page">
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
-        />
+      <div className="forgot-content">
 
-        <br />
-        <br />
+        <h1 className="forgot-title">
+          RESET
+          <br />
+          PASSWORD
+        </h1>
 
-        <button type="submit">
-          Send Reset Link
-        </button>
-      </form>
+        <p className="forgot-subtitle">
+          We'll send a reset link.
+        </p>
 
-      <p>{message}</p>
+        <div className="forgot-card">
+
+          <img
+            src={logo}
+            alt="PizzaHub"
+            className="forgot-logo"
+          />
+
+          <h2>Forgot Password</h2>
+
+          <p>
+            Enter your email address
+          </p>
+
+          <form onSubmit={handleSubmit}>
+
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+            />
+
+            <button
+              type="submit"
+              className="forgot-btn"
+            >
+              Send Reset Link
+            </button>
+
+          </form>
+
+          <p className="forgot-message">
+            {message}
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
   );
 }

@@ -1,0 +1,137 @@
+.register-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background-image: url("../assets/pizza-bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  padding-left: 80px;
+}
+
+.register-page::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.register-content {
+  position: relative;
+  z-index: 1;
+
+  width: 500px;
+}
+
+.register-title {
+  color: white;
+  font-size: 5rem;
+  font-weight: bold;
+  line-height: 1.1;
+
+  margin-bottom: 10px;
+}
+
+.register-subtitle {
+  color: #d62828;
+  font-size: 1.8rem;
+
+  margin-bottom: 30px;
+}
+
+.register-card {
+  width: 430px;
+
+  background: rgba(15, 15, 15, 0.92);
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 0 20px rgba(214,40,40,0.2);
+}
+
+.register-logo {
+  width: 110px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.register-card h2 {
+  color: white;
+  text-align: center;
+}
+
+.register-card p {
+  color: #bbb;
+  text-align: center;
+}
+
+.register-card input {
+  width: 100%;
+  padding: 14px;
+
+  margin-top: 15px;
+
+  background: #111;
+  color: white;
+
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.register-card input:focus {
+  outline: none;
+  border-color: #d62828;
+}
+
+.register-btn {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #d62828;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  background: #b71c1c;
+}
+
+.register-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-links a {
+  color: #ff5a5a;
+  text-decoration: none;
+}
+
+.register-message {
+  color: white;
+  text-align: center;
+  margin-top: 15px;
+}
