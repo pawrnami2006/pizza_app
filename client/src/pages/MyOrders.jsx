@@ -14,7 +14,7 @@ function MyOrders() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/orders/my-orders",
+        "https://pizzahub-backend-xgxj.onrender.com/api/orders/my-orders",
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -79,7 +79,7 @@ useEffect(() => {
   try {
     // Create Pizza
     const pizzaRes = await axios.post(
-      "http://localhost:5000/api/pizzas",
+      "https://pizzahub-backend-xgxj.onrender.com/api/pizzas",
       {
         name: `${base} ${cheese} Pizza`,
         base,
@@ -94,14 +94,14 @@ useEffect(() => {
 
     // Get Razorpay Key
     const keyRes = await axios.get(
-      "http://localhost:5000/api/payment/key"
+      "https://pizzahub-backend-xgxj.onrender.com/api/payment/key"
     );
 
     const key = keyRes.data.key;
 
     // Create Razorpay Order
     const orderRes = await axios.post(
-      "http://localhost:5000/api/payment/create-order",
+      "https://pizzahub-backend-xgxj.onrender.com/api/payment/create-order",
       {
         amount: price,
       }
@@ -123,7 +123,7 @@ useEffect(() => {
           localStorage.getItem("token");
 
         await axios.post(
-          "http://localhost:5000/api/orders",
+          "https://pizzahub-backend-xgxj.onrender.com/api/orders",
           {
             pizza: pizzaId,
             quantity: 1,

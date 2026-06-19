@@ -27,7 +27,7 @@ function Dashboard() {
   const fetchPizzas = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/pizzas"
+        "https://pizzahub-backend-xgxj.onrender.com/api/pizzas"
       );
 
       setPizzas(res.data);

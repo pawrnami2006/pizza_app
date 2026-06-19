@@ -22,7 +22,7 @@ function VerifyEmail() {
   const verifyEmail = async () => {
     try {
       await axios.get(
-        `http://localhost:5000/api/auth/verify-email/${token}`
+        `https://pizzahub-backend-xgxj.onrender.com/api/auth/verify-email/${token}`
       );
 
       setMessage(

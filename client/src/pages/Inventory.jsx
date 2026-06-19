@@ -15,7 +15,7 @@ function Inventory() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/inventory",
+        "https://pizzahub-backend-xgxj.onrender.com/api/inventory",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ function Inventory() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/inventory/${id}`,
+        `https://pizzahub-backend-xgxj.onrender.com/api/inventory/${id}`,
         {
           stock,
         },
@@ -56,7 +56,7 @@ function Inventory() {
     const token = localStorage.getItem("token");
 
     await axios.post(
-      "http://localhost:5000/api/inventory",
+      "https://pizzahub-backend-xgxj.onrender.com/api/inventory",
       {
         itemName,
         category,

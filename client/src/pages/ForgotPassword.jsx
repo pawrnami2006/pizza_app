@@ -12,7 +12,7 @@ function ForgotPassword() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
+        "https://pizzahub-backend-xgxj.onrender.com/api/auth/forgot-password",
         { email }
       );
 

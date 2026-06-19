@@ -10,7 +10,7 @@ function OrderManagement() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/orders",
+        "https://pizzahub-backend-xgxj.onrender.com/api/orders",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ function OrderManagement() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+        `https://pizzahub-backend-xgxj.onrender.com/api/orders/${orderId}/status`,
         {
           orderStatus,
         },
