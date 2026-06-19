@@ -1,36 +1,17 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  connectionTimeout: 30000,
-  greetingTimeout: 30000,
-  socketTimeout: 30000,
-});
-
-transporter.verify((error, success) => {
-  if (error) {
-    console.log("SMTP Verify Error:", error);
-  } else {
-    console.log("SMTP Server is ready");
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendEmail = async (to, subject, html) => {
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    const data = await resend.emails.send({
+      from: "onboarding@resend.dev",
       to,
       subject,
       html,
     });
 
-    console.log("Email sent successfully");
+    console.log("Email sent:", data);
   } catch (error) {
     console.log("Email Error:", error);
   }
@@ -38,8 +19,8 @@ const sendEmail = async (to, subject, html) => {
 
 const sendOrderEmail = async (to, order) => {
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    const data = await resend.emails.send({
+      from: "onboarding@resend.dev",
       to,
       subject: "Pizza Order Placed 🍕",
       html: `
@@ -53,16 +34,16 @@ const sendOrderEmail = async (to, order) => {
       `,
     });
 
-    console.log("Order email sent successfully");
+    console.log("Order Email Sent:", data);
   } catch (error) {
     console.log("Order Email Error:", error);
   }
 };
+
 const sendLowStockEmail = async (itemName, stock) => {
   try {
-    await transporter.sendMail({
-
-      from: process.env.EMAIL_USER,
+    const data = await resend.emails.send({
+      from: "onboarding@resend.dev",
       to: process.env.EMAIL_USER,
       subject: "⚠️ Low Stock Alert",
       html: `
@@ -80,12 +61,9 @@ const sendLowStockEmail = async (itemName, stock) => {
       `,
     });
 
-    console.log("Low stock email sent");
+    console.log("Low Stock Email Sent:", data);
   } catch (error) {
-    console.log(
-      "Low Stock Email Error:",
-      error
-    );
+    console.log("Low Stock Email Error:", error);
   }
 };
 
