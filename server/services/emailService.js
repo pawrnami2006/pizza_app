@@ -13,6 +13,14 @@ const transporter = nodemailer.createTransport({
   socketTimeout: 30000,
 });
 
+transporter.verify((error, success) => {
+  if (error) {
+    console.log("SMTP Verify Error:", error);
+  } else {
+    console.log("SMTP Server is ready");
+  }
+});
+
 const sendEmail = async (to, subject, html) => {
   try {
     await transporter.sendMail({
@@ -50,20 +58,10 @@ const sendOrderEmail = async (to, order) => {
     console.log("Order Email Error:", error);
   }
 };
-const sendLowStockEmail = async (
-  itemName,
-  stock
-) => {
+const sendLowStockEmail = async (itemName, stock) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
     await transporter.sendMail({
+
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: "⚠️ Low Stock Alert",
