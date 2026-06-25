@@ -51,9 +51,17 @@ PizzaHub allows customers to browse pizzas, build custom pizzas, place orders, m
 
 ### Authentication
 - JWT (JSON Web Token)
+- bcrypt
 
 ### Payment Gateway
-- Razorpay
+- Razorpay (Test Mode)
+
+### Email Service
+- Resend API
+- Email Verification
+- Forgot Password Emails
+- Order Confirmation Emails
+- Low Stock Alert Emails
 
 ---
 
@@ -151,6 +159,10 @@ JWT_SECRET=your_jwt_secret
 RAZORPAY_KEY_ID=your_key_id
 
 RAZORPAY_KEY_SECRET=your_key_secret
+
+RESEND_API_KEY=your_resend_api_key
+
+EMAIL_USER=your_email_address
 ```
 
 ---
@@ -191,6 +203,19 @@ npm run dev
 - Delivery Status Updates
 
 ---
+
+## ✨ Additional Highlights
+- Secure JWT Authentication
+- Pssword Hashing using bcrypt
+- Protected Admin Routes
+- RESTful API Architecture
+- Responsive User Interface
+- MongoDB Atlas Cloud Database
+- Razorpay Test Payment Integration
+- Email Notifications using Resend API
+- Fully Deployed using Vercel and Render
+
+--- 
 
 ## 🎯 Future Enhancements
 
